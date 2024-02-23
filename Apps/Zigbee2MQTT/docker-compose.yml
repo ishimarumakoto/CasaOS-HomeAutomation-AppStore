@@ -4,7 +4,7 @@ name: zigbee2mqtt
 services:
   zigbee2mqtt:
     container_name: zigbee2mqtt
-    command: >
+    entrypoint: >
       sh -c '        
         if [ ! -f "/app/data/configuration.yaml" ]; then
         echo "No config file found. Creating one..."
