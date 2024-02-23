@@ -5,16 +5,16 @@ services:
   zigbee2mqtt:
     container_name: zigbee2mqtt
     command: >
-     sh -c '
-     if [ ! -f "/app/data/configuration.yaml" ]; then
-         echo "No config file found. Creating one..."
-         if [ ! -d "/app/data" ]; then
-             echo "Creating directory /app/data..."
-             mkdir -p /app/data
-         fi
-        wget -O /app/data/configuration.yaml https://raw.githubusercontent.com/Koenkk/zigbee2mqtt/master/data/configuration.yaml
-        echo "Config file downloaded successfully."
-     fi'
+      sh -c '
+       if [ ! -f "/app/data/configuration.yaml" ]; then
+           echo "No config file found. Creating one..."
+           if [ ! -d "/app/data" ]; then
+               echo "Creating directory /app/data..."
+               mkdir -p /app/data
+           fi
+          wget -O /app/data/configuration.yaml https://raw.githubusercontent.com/Koenkk/zigbee2mqtt/master/data/configuration.yaml
+          echo "Config file downloaded successfully."
+       fi'
     image: koenkk/zigbee2mqtt:latest
     labels:
       icon: https://raw.githubusercontent.com/mr-manuel/CasaOS-HomeAutomation-AppStore/latest/Apps/Zigbee2MQTT/icon.png
