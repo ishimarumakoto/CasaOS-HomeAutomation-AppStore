@@ -5,9 +5,8 @@ services:
   zigbee2mqtt:
     container_name: zigbee2mqtt
     command: >
-      sh -c '
-        CONFIG_FILE="/app/data/configuration.yaml"
-        if [ ! -f "$CONFIG_FILE" ]; then
+      sh -c '        
+        if [ ! -f "/app/data/configuration.yaml" ]; then
         echo "No config file found. Creating one..."
         if [ ! -d "/app/data" ]; then
             echo "Creating directory /app/data..."
