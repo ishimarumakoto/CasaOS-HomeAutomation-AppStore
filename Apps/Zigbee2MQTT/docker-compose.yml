@@ -6,17 +6,16 @@ services:
     container_name: zigbee2mqtt
     command: >
         sh -c '
-        if [ ! -f "/app/data/configuration.yaml" ]; then
-        echo "No config file found. Creating one..."           
-        wget -O /app/data/configuration.yaml https://raw.githubusercontent.com/Koenkk/zigbee2mqtt/master/data/configuration.yaml
-            if [ $? -eq 0 ]; then
+            if [ ! -f "/app/data/configuration.yaml" ]; then
+              echo -n "No config file found. Downloading config from GitHub... "
+              wget -O /app/data/configuration.yaml https://raw.githubusercontent.com/Koenkk/zigbee2mqtt/master/data/configuration.yaml
+              if [ $? -eq 0 ]; then
                 echo "done."
-            else
+              else
                 echo "error."
                 exit 1
-            fi
-        fi
-        echo "Config file downloaded successfully."'
+              fi
+            fi'
     image: koenkk/zigbee2mqtt:latest
     labels:
       icon: https://raw.githubusercontent.com/mr-manuel/CasaOS-HomeAutomation-AppStore/latest/Apps/Zigbee2MQTT/icon.png
@@ -58,7 +57,9 @@ x-casaos:
       Visit [Zigbee2MQTT](https://www.zigbee2mqtt.io) for more details. Check the [documentation](https://www.zigbee2mqtt.io/guide/getting-started/) for further settings.
   developer: Koenkk (Koen Kanters)
   icon: https://raw.githubusercontent.com/mr-manuel/CasaOS-HomeAutomation-AppStore/latest/Apps/Zigbee2MQTT/icon.png
+  index: "/"
   main: zigbee2mqtt
+  port_map: "8080"
   project_url: https://github.com/mr-manuel/CasaOS-HomeAutomation-AppStore
   store_app_id: zigbee2mqtt
   tagline:
@@ -72,7 +73,5 @@ x-casaos:
 
         Please configure the configuration.yaml of Zigbee2MQTT based on [here](https://www.zigbee2mqtt.io/guide/installation/01_linux.html#configuring).
         [Website](https://www.zigbee2mqtt.io/) &bull; [Documentation](https://www.zigbee2mqtt.io/guide/getting-started/)
-  index: /
-  port_map: "8080"
   title:
     en_us: Zigbee2MQTT
